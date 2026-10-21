@@ -14,4 +14,15 @@
 
 The first sandboxed production build failed because Turbopack could not bind an internal worker port. The same build succeeded with local execution permission; no code workaround was required.
 
-No deployment or external account changes were made.
+## GitHub Pages deployment — October 20, 2026
+
+The user subsequently authorized GitHub upload and deployment.
+
+- Source: https://github.com/Jen77776/Jen77776.github.io (`main`).
+- Site: https://jen77776.github.io/ (`gh-pages` static export).
+- Deployment: https://github.com/Jen77776/Jen77776.github.io/actions/runs/39530813016 — success.
+- Re-ran lint and production build after enabling static export; both passed.
+- Live homepage, referenced CSS, robots.txt, and sitemap.xml returned HTTP 200.
+- Live HTML contains the portfolio heading, featured 3M work, Star Tribune experience, and correct canonical origin.
+- Canonical URL, sitemap and indexing are now enabled for the actual GitHub Pages origin.
+- Résumé, email, LinkedIn, study-assistant project URL and authentic screenshots still need owner-provided values. Responsive browser inspection limitations above remain applicable.
