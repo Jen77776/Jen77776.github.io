@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://jen77776.github.io/sitemap.xml
