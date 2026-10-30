@@ -108,4 +108,7 @@ dialog.case-study>#detail-title{display:none}.case-study>.close{position:sticky;
 dialog::backdrop{backdrop-filter:none;background:#16314a66}.experience-card,.school,.resume,.socials :is(button,a){will-change:auto}
 
 /* Open long case studies without scaling/repainting the whole dialog. */
-dialog[open]{animation:none;transform:none}dialog{box-shadow:0 12px 40px #17324c26;overscroll-behavior:contain}.case-study .case-team,.case-study .case-tech,.case-study .case-learning,.case-study .case-additional{content-visibility:auto;contain-intrinsic-size:auto 320px}.experience-card{transition:transform .16s ease-out,border-color .16s}.experience-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px #36648810}
+dialog[open]{animation:none;transform:none}dialog{box-shadow:0 12px 40px #17324c26;overscroll-behavior:contain}.experience-card{transition:transform .16s ease-out,border-color .16s}.experience-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px #36648810}
+
+/* Keep case-study sections laid out to prevent first-scroll reflow. */
+#detail{scroll-behavior:auto}.team-photo img{height:auto}.team-photo-portrait img{height:133.333%}
