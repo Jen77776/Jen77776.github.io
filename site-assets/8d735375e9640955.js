@@ -78,6 +78,7 @@ export function createFrameAnimator(
   let lastTime = 0;
   let raf = 0;
   let destroyed = false;
+  let paused = false;
 
   const normalizeFrame = (frame        ) =>
     circular
@@ -85,7 +86,8 @@ export function createFrameAnimator(
       : clamp(frame, 0, frameCount - 1);
 
   const render = () => {
-    const frame = Math.round(normalizeFrame(position));
+    const rounded = Math.round(normalizeFrame(position));
+    const frame = circular ? wrap(rounded, frameCount) : clamp(rounded, 0, frameCount - 1);
     if (frame !== lastFrame) {
       options.render(frame);
       lastFrame = frame;
@@ -94,7 +96,7 @@ export function createFrameAnimator(
 
   const loop = (now        ) => {
     raf = 0;
-    if (destroyed) return;
+    if (destroyed || paused) return;
     const deltaTime = lastTime
       ? Math.min((now - lastTime) / 1000, 1 / 30)
       : 1 / 60;
@@ -124,12 +126,18 @@ export function createFrameAnimator(
   };
 
   const schedule = () => {
-    if (!raf && !destroyed) raf = requestAnimationFrame(loop);
+    if (!raf && !destroyed && !paused) raf = requestAnimationFrame(loop);
   };
 
   render();
 
   return {
+    setPaused(value) {
+      paused = value;
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0; lastTime = 0;
+      if (!paused) schedule();
+    },
     setTarget(frame        ) {
       const normalized = normalizeFrame(frame);
       target = circular

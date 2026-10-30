@@ -39,6 +39,7 @@ Object.assign(sprite.style,{position:'absolute',inset:'0',width:'100%',height:'1
 stage.dataset.renderMode=frames.length?'cached-frames':'atlas';
 let visible=true;
 const animator=createFrameAnimator({frameCount:69,circular:true,smoothTime:.18,maxSpeed:90,render:frame=>{const f=Math.min(68,frame),col=f%9,row=Math.floor(f/9);context.clearRect(0,0,480,720);if(frames[f])context.drawImage(frames[f],0,0);else context.drawImage(atlas,col*480,row*720,480,720,0,0,480,720);sprite.dataset.frame=String(f);}});
+document.addEventListener('portfolio-modal',e=>animator.setPaused(e.detail));
 let stageRect=stage.getBoundingClientRect();const refreshRect=()=>stageRect=stage.getBoundingClientRect();new ResizeObserver(refreshRect).observe(stage);window.addEventListener('scroll',refreshRect,{passive:true});window.addEventListener('resize',refreshRect,{passive:true});
 const follow=(x,y)=>{if(document.hidden||!visible)return;const r=stageRect,dx=x-r.left-r.width*.52,dy=y-r.top-r.height*.18;if(Math.hypot(dx,dy)>15)animator.setDirection(dx,dy,-Math.PI/2);};
 let inputRaf=0,lastPointer=null;
