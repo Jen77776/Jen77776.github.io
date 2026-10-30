@@ -1,0 +1,1 @@
+Keep site-assets beside personal-website-interactive.html. Preview with a local HTTP server. Animation loads after window load, visibility and idle time. Backup video loads only if animation initialization fails. No API calls.
